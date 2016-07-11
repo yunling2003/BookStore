@@ -59,6 +59,34 @@ body {
   margin-top: 28px;
 }
 
+.vcenter {
+    display: inline-block;
+    vertical-align: middle;
+    float: none;
+}
+
+.bookimg {
+  float:left;
+}
+
+.bookbtn {
+  float:right;
+}
+
+.search {
+  padding-top: 20px;
+  padding-bottom: 40px;
+}
+
+.item {
+  padding: 8px 15px;
+  border-bottom: 1px solid #ccc;
+}
+
+.pname {
+  margin-bottom: 7px;
+}
+
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
   .container {
