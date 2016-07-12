@@ -65,7 +65,8 @@ module.exports = function (grunt) {
           '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
         ]
       }
-    },
+    },    
+
 
     // The actual grunt server settings
     connect: {
@@ -76,8 +77,12 @@ module.exports = function (grunt) {
         livereload: 35729
       },
       livereload: {
-        options: {
-          open: true,
+        options: {          
+          open: {            
+            target: 'http://localhost:<%= connect.options.port %>',
+            appName: 'chrome'
+          },
+
           middleware: function (connect) {
             return [
               connect.static('.tmp'),
@@ -437,7 +442,7 @@ module.exports = function (grunt) {
       'wiredep',
       'concurrent:server',
       'postcss:server',
-      'connect:livereload',
+      'connect:livereload',      
       'watch'
     ]);
   });

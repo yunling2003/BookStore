@@ -6,11 +6,17 @@ describe('Controller: MainCtrl', function () {
   beforeEach(module('teamBlogApp'));
 
   var MainCtrl,
-    scope;
+    scope,
+    $httpBackend;
 
   // Initialize the controller and a mock scope
-  beforeEach(inject(function ($controller, $rootScope) {
+  beforeEach(inject(function (_$httpBackend_, $controller, $rootScope) {
     scope = $rootScope.$new();
+    $httpBackend = _$httpBackend_;
+    $httpBackend.expectGET('books.json')
+                .respond([{'Name':'Silicon Valley', 'Description':'讲诉一个钢铁侠的故事', 'Price':'20$', 'src':'images/1.jpg'},
+      {'Name':'Super IP', 'Description':'超级IP', 'Price':'35$', 'src':'images/2.jpg'}]);
+    
     MainCtrl = $controller('MainCtrl', {
       $scope: scope
       // place here mocked dependencies
@@ -18,6 +24,9 @@ describe('Controller: MainCtrl', function () {
   }));
 
   it('should attach a list of books to the scope', function () {
-    expect(MainCtrl.books.length).toBe(10);
+    expect(scope.books).toBeUndefined();
+    $httpBackend.flush();
+    expect(scope.books.length).toBe(2);
+    expect(scope.orderProp).toBe('Name');
   });
 });

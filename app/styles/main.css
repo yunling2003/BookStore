@@ -65,6 +65,18 @@ body {
     float: none;
 }
 
+.nopadleft{
+  padding-left: 0px;
+}
+
+.nopadright{
+  padding-right: 0px;
+}
+
+.highlighted{
+  background:yellow;
+}
+
 .bookimg {
   float:left;
 }

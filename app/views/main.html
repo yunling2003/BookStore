@@ -1,20 +1,22 @@
-<div class="row search">
-  <div class="col-md-1 vcenter">
-    <p>Search</p>
+<div class="row search">  
+  <div class="col-md-6 vcenter nopadright">
+   <input class="form-control" placeholder="Search" ng-model="query">
   </div>
-  <div class="col-md-6 vcenter">
-   <input class="form-control" placeholder="Book Name" ng-model="query">
+  <div class="col-md-1 vcenter nopadleft">
+    <span class="glyphicon glyphicon-search"></span>
   </div>
 </div>
 <div class="item" ng-repeat="book in books | filter:query | orderBy:orderProp">
   <div class="bookimg">
-    <img src="{{book.src}}">
+    <img ng-src="{{book.src}}">
   </div>
   <dl>
-    <dt class="pname">{{book.Name}}</dt>
+    <dt class="pname">
+      <span ng-bind-html="highlight(book.Name, query)"></span>
+    </dt>
     <dd>
-      <div class="pname">{{book.Description}}</div>
-      <div class="pname"><i>Price:</i> {{book.Price}}</div>
+      <div class="pname"><span ng-bind-html="highlight(book.Description, query)"></span></div>
+      <div class="pname"><i>Price:</i> <span ng-bind-html="highlight(book.Price, query)"></span></div>
       <div class="btn-group bookbtn" role="group" aria-label="...">
         <button type="button" class="btn btn-info">Add Cart</button>
         <button type="button" class="btn btn-success">Buy</button>        
