@@ -7,18 +7,21 @@ describe('Controller: MainCtrl', function () {
 
   var MainCtrl,
     scope,
-    $httpBackend;
+    $httpBackend,
+    sce;
 
   // Initialize the controller and a mock scope
-  beforeEach(inject(function (_$httpBackend_, $controller, $rootScope) {
+  beforeEach(inject(function (_$httpBackend_, $controller, $rootScope, $sce) {
     scope = $rootScope.$new();
     $httpBackend = _$httpBackend_;
+    sce = $sce;
     $httpBackend.expectGET('books.json')
                 .respond([{'Name':'Silicon Valley', 'Description':'讲诉一个钢铁侠的故事', 'Price':'20$', 'src':'images/1.jpg'},
       {'Name':'Super IP', 'Description':'超级IP', 'Price':'35$', 'src':'images/2.jpg'}]);
     
     MainCtrl = $controller('MainCtrl', {
-      $scope: scope
+      $scope: scope    
+      //$sce: sce
       // place here mocked dependencies
     });
   }));
@@ -28,5 +31,9 @@ describe('Controller: MainCtrl', function () {
     $httpBackend.flush();
     expect(scope.books.length).toBe(2);
     expect(scope.orderProp).toBe('Name');
+  });
+
+  it('should highlight search text', function(){    
+    expect(escape(scope.highlight('abcde', 'cd'))).toContain('highlighted');
   });
 });

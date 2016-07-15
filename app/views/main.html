@@ -6,6 +6,15 @@
     <span class="glyphicon glyphicon-search"></span>
   </div>
 </div>
+<div>
+  <ul>
+    <li ng-repeat="item in searchPaginator.currentPageItems">
+      {{item}}
+    </li>
+  </ul>
+  <a href="" ng-click="searchPaginator.previous()" ng-show="searchPaginator.hasPrevious()">&lt;&lt; Prev</a>
+  <a href="" ng-click="searchPaginator.next()" ng-show="searchPaginator.hasNext()">Next &gp;&gt;</a>
+</div>
 <div class="item" ng-repeat="book in books | filter:query | orderBy:orderProp">
   <div class="bookimg">
     <img ng-src="{{book.src}}">
