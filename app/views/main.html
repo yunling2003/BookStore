@@ -7,15 +7,24 @@
   </div>
 </div>
 <div>
-  <ul>
-    <li ng-repeat="item in searchPaginator.currentPageItems">
-      {{item}}
+  <ul class="pagination bookbtn">
+    <li>
+      <a href="" aria-label="Previous" ng-click="searchPaginator.previous()" ng-show="searchPaginator.hasPrevious()">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+    <li ng-repeat="n in [] | range:pageCount">
+      <a href="" ng-click="searchPaginator.locatePage(n)">{{n}}</a>
+    </li>
+    <li>
+      <a href="" aria-label="Next" ng-click="searchPaginator.next()" ng-show="searchPaginator.hasNext()">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
     </li>
   </ul>
-  <a href="" ng-click="searchPaginator.previous()" ng-show="searchPaginator.hasPrevious()">&lt;&lt; Prev</a>
-  <a href="" ng-click="searchPaginator.next()" ng-show="searchPaginator.hasNext()">Next &gp;&gt;</a>
 </div>
-<div class="item" ng-repeat="book in books | filter:query | orderBy:orderProp">
+<div class="clearfix"></div>
+<div class="item" ng-repeat="book in searchPaginator.currentPageItems | filter:query | orderBy:orderProp">
   <div class="bookimg">
     <img ng-src="{{book.src}}">
   </div>
@@ -33,4 +42,21 @@
     </dd>
   </dl>
   <div class="clearfix"></div>
+</div>
+<div>
+  <ul class="pagination bookbtn">
+    <li>
+      <a href="" aria-label="Previous" ng-click="searchPaginator.previous()" ng-show="searchPaginator.hasPrevious()">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+    <li ng-repeat="n in [] | range:pageCount">
+      <a href="" ng-click="searchPaginator.locatePage(n)">{{n}}</a>
+    </li>
+    <li>
+      <a href="" aria-label="Next" ng-click="searchPaginator.next()" ng-show="searchPaginator.hasNext()">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+  </ul>
 </div>

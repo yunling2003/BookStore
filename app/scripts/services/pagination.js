@@ -37,6 +37,10 @@ angular.module('teamBlogApp.services')
   	   	  hasPrevious: function(){
   	   	  	return this.currentOffset !== 0;
   	   	  },
+          locatePage: function(pageNumber){
+            this.currentOffset = (pageNumber - 1) * pageSize;
+            this._load();
+          },
   	   	  currentPageItems: [],
   	   	  currentOffset: 0
   	   };

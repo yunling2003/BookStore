@@ -15,7 +15,9 @@ angular
     'ngResource',
     'ngRoute',
     'ngSanitize',
-    'ngTouch'
+    'ngTouch',
+    'teamBlogApp.services',
+    'teamBlogApp.filters'    
   ])
   .config(function ($routeProvider) {
     $routeProvider
@@ -33,3 +35,6 @@ angular
         redirectTo: '/'
       });
   });
+
+angular.module('teamBlogApp.services', []);
+angular.module('teamBlogApp.filters', []);
