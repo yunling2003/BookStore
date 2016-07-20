@@ -11,7 +11,7 @@ angular.module('teamBlogApp')
   .controller('MainCtrl', function ($scope, $http, $sce, Paginator) {
   	var fetchFunction = function(offset, limit, callback){
   		$http.get('books.json').success(function(data){        
-        $scope.pageCount = data.length / 5 + (data.length % 5 > 0 ? 1 : 0);
+        $scope.pageCount = parseInt(data.length / 5) + (data.length % 5 > 0 ? 1 : 0);
         var count = offset + limit > data.length ? data.length : offset + limit;  			    
 	    	callback(data.slice(offset, count));    	
 	    });

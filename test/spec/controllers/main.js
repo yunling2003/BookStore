@@ -27,9 +27,9 @@ describe('Controller: MainCtrl', function () {
   }));
 
   it('should attach a list of books to the scope', function () {
-    expect(scope.books).toBeUndefined();
+    expect(scope.pageCount).toBe(0);
     $httpBackend.flush();
-    expect(scope.books.length).toBe(2);
+    expect(scope.pageCount).toBe(1);
     expect(scope.orderProp).toBe('Name');
   });
 
