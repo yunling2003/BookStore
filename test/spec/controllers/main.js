@@ -14,23 +14,18 @@ describe('Controller: MainCtrl', function () {
   beforeEach(inject(function (_$httpBackend_, $controller, $rootScope, $sce) {
     scope = $rootScope.$new();
     $httpBackend = _$httpBackend_;
-    sce = $sce;
-    $httpBackend.expectGET('books.json')
-                .respond([{'Name':'Silicon Valley', 'Description':'讲诉一个钢铁侠的故事', 'Price':'20$', 'src':'images/1.jpg'},
-      {'Name':'Super IP', 'Description':'超级IP', 'Price':'35$', 'src':'images/2.jpg'}]);
+    sce = $sce;    
     
     MainCtrl = $controller('MainCtrl', {
-      $scope: scope    
-      //$sce: sce
-      // place here mocked dependencies
+      $scope: scope,   
+      books: [{'Id':'1', 'Name':'Silicon Valley', 'Description':'讲诉一个钢铁侠的故事', 'Price':'20$', 'src':'images/1.jpg'},
+      {'Id':'2', 'Name':'Super IP', 'Description':'超级IP', 'Price':'35$', 'src':'images/2.jpg'}]
     });
   }));
 
-  it('should attach a list of books to the scope', function () {
-    expect(scope.pageCount).toBe(0);
-    $httpBackend.flush();
+  it('should attach a list of books to the scope', function () {    
     expect(scope.pageCount).toBe(1);
-    expect(scope.orderProp).toBe('Name');
+    expect(scope.orderProp).toBe('Id');
   });
 
   it('should highlight search text', function(){    

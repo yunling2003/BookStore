@@ -8,10 +8,8 @@
  * Controller of the teamBlogApp
  */
 angular.module('teamBlogApp')
-  .controller('MainCtrl', function ($scope, $http, $sce, Paginator, Bookservice) {
-  	var fetchFunction = function(offset, limit, callback){
-      //todo: use Bookservice
-      var books = Bookservice.query();  		      
+  .controller('MainCtrl', function ($scope, $sce, Paginator, books) {     
+  	var fetchFunction = function(offset, limit, callback){           
       $scope.pageCount = parseInt(books.length / 5) + (books.length % 5 > 0 ? 1 : 0);
       var count = offset + limit > books.length ? books.length : offset + limit;  			    
 	    callback(books.slice(offset, count));    	
@@ -26,6 +24,6 @@ angular.module('teamBlogApp')
 
     $scope.pageCount = 0;
     $scope.query = '';
-    $scope.orderProp = 'Name';
+    $scope.orderProp = 'Id';
     $scope.searchPaginator = Paginator(fetchFunction, 5);
   });

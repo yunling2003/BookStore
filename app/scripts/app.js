@@ -24,7 +24,12 @@ angular
       .when('/', {
         templateUrl: 'views/main.html',
         controller: 'MainCtrl',
-        controllerAs: 'main'
+        controllerAs: 'main',
+        resolve: {
+          books: function(BooksLoader){
+            return BooksLoader();
+          }
+        }
       })
       .when('/about', {
         templateUrl: 'views/about.html',
