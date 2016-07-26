@@ -1,9 +1,24 @@
 <div class="row search">  
-  <div class="col-md-6 vcenter nopadright">
+  <div class="col-md-4 vcenter nopadright">
    <input class="form-control" placeholder="Search" ng-model="query">
   </div>
   <div class="col-md-1 vcenter nopadleft">
     <span class="glyphicon glyphicon-search"></span>
+  </div>
+  <div class="col-md-2 vcenter nopadleft nopadright"></div>
+  <div class="col-md-2 vcenter nopadright">
+    <span>Sort by:</span>
+  </div>
+  <div class="col-md-2 vcenter nopadleft">
+    <div class="dropdown">
+      <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">{{orderProp}}<span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+        <li><a href="" ng-click="setSortOrder('Id')">Id</a></li>
+        <li><a href="" ng-click="setSortOrder('Name')">Name</a></li>
+        <li><a href="" ng-click="setSortOrder('Price')">Price</a></li>           
+      </ul>
+    </div>
   </div>
 </div>
 <div>

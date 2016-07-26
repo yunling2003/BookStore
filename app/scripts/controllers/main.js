@@ -17,9 +17,13 @@ angular.module('teamBlogApp')
 
     $scope.highlight = function(text, search){
     	if(!search){    		
-    		return $sce.trustAsHtml(text);
+    		return $sce.trustAsHtml(text.toString());
     	}
-    	return $sce.trustAsHtml(text.replace(new RegExp(search, 'gi'), '<span class="highlighted">$&</span>'))
+    	return $sce.trustAsHtml(text.toString().replace(new RegExp(search, 'gi'), '<span class="highlighted">$&</span>'))
+    };
+
+    $scope.setSortOrder = function(sortOrder){
+      $scope.orderProp = sortOrder;
     };
 
     $scope.pageCount = 0;

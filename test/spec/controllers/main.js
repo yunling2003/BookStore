@@ -31,4 +31,9 @@ describe('Controller: MainCtrl', function () {
   it('should highlight search text', function(){    
     expect(escape(scope.highlight('abcde', 'cd'))).toContain('highlighted');
   });
+
+  it('should set sort order', function(){
+    scope.setSortOrder('Name');
+    expect(scope.orderProp).toBe('Name');
+  });
 });
