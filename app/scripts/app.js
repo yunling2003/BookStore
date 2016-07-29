@@ -17,7 +17,8 @@ angular
     'ngSanitize',
     'ngTouch',
     'teamBlogApp.services',
-    'teamBlogApp.filters'    
+    'teamBlogApp.filters',
+    'teamBlogApp.directives'
   ])
   .config(function ($routeProvider) {
     $routeProvider
@@ -28,6 +29,21 @@ angular
         resolve: {
           books: function(BooksLoader){
             return BooksLoader();
+          }
+        }
+      })
+      .when('/new', {
+        templateUrl: 'views/bookform.html',
+        controller: 'NewCtrl',
+        controllerAs: 'new'
+      })
+      .when('/edit/:bookId', {
+        templateUrl: 'views/bookform.html',
+        controller: 'EditCtrl',
+        controllerAs: 'edit',
+        resolve: {
+          book: function(BookLoader){
+            return BookLoader();
           }
         }
       })
@@ -43,3 +59,4 @@ angular
 
 angular.module('teamBlogApp.services', []);
 angular.module('teamBlogApp.filters', []);
+angular.module('teamBlogApp.directives', []);

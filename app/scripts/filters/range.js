@@ -6,7 +6,7 @@
  * @description
  * # Range
  * Range filter of the teamBlogApp
- */
+ */	
  angular.module('teamBlogApp.filters', [])
  	.filter('range', function() {
 	  return function(input, total) {

@@ -10,7 +10,8 @@
  angular.module('teamBlogApp.services')
  	.factory('Bookservice', ['$resource', function($resource){
  	return $resource('http://localhost:9002/books/:bookId',
- 		{bookId: '@id'}, {'query': {headers : {'Cache-Control': 'no-cache' }, isArray:true}}
+ 		{bookId: '@id'}, 
+ 		{'query': {headers : {'Cache-Control': 'no-cache' }, isArray:true}}
 	);
  }]);
 
@@ -26,3 +27,16 @@
  			return delay.promise;
  		};
  	}]);
+
+ angular.module('teamBlogApp.services')
+ 	.factory('BookLoader', ['Bookservice', '$route', '$q', function(Bookservice, $route, $q){
+ 		return function(){
+ 			var delay = $q.defer();
+ 			Bookservice.get({bookId: $route.current.params.bookId}, function(book){
+ 				delay.resolve(book);
+ 			}, function(){
+ 				delay.reject('Unable to fetch book ' + $route.current.params.bookId);
+ 			});
+ 			return delay.promise;
+ 		};
+ 	}])

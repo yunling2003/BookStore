@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 describe('Paginator', function(){
 
@@ -25,7 +25,7 @@ describe('Paginator', function(){
 	        var count = offset + limit > data.length ? data.length : offset + limit;  			    
 		    callback(data.slice(offset, count));    	
 	  	};
-	  	paginator = Paginator(fetchFunc, 5);
+	  	paginator = new Paginator(fetchFunc, 5);
 	}));
 
 	it('should load page correctly', function(){		

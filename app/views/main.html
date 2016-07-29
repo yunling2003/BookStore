@@ -52,7 +52,7 @@
       <div class="pname"><i>Description:</i><span ng-bind-html="highlight(book.Description, query)"></span></div>
       <div class="pname"><i>Price:</i> <span ng-bind-html="highlight(book.Price, query)"></span></div>
       <div class="btn-group bookbtn" role="group" aria-label="...">
-        <button type="button" class="btn btn-info">Add Cart</button>
+        <button type="button" class="btn btn-info" ng-click="edit(book.Id)">Edit</button>
         <button type="button" class="btn btn-success">Buy</button>        
       </div>
     </dd>

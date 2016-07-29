@@ -1,0 +1,38 @@
+<h2>Edit Book</h2>
+<form name="bookForm" ng-submit="save()">
+	<div class="form-group">
+		<label for="Id">Id:</label>
+		<label id="Id">{{book.Id}}</label>
+	</div>
+	<div class="form-group">
+		<label for="Name">Book Name:</label><span class="requiredMark" ng-show="bookForm.name.$error.required">*</span> 
+		<input type="text" class="form-control" name="name" id="Name" ng-model="book.Name" placeholder="Name" focus required>		
+	</div>
+	<div class="form-group">
+		<label for="Description">Description:</label>
+		<textarea id="Description" name="description" class="form-control" ng-model="book.Description" placeholder="Description" ng-maxlength="200"></textarea>
+		<div class="alert alert-warning" ng-show="bookForm.description.$error.maxlength">
+			Too many characters!
+		</div>		
+	</div>
+	<div class="row">
+		<div class="form-group col-lg-5">
+			<label for="Price">Price:</label><span class="requiredMark" ng-show="bookForm.price.$error.required">*</span>
+			<input type="number" name="price" class="form-control input-normal" id="Price" ng-model="book.Price" min="1" max="100" placeholder="Price" integer required>
+			<div class="alert alert-warning" ng-show="bookForm.price.$error.integer">
+				This is not valid integer！
+			</div>
+			<div class="alert alert-warning" ng-show="bookForm.price.$error.min || bookForm.price.$error.max">
+				The value must be in range 1 to 100!
+			</div>        
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="src">Image Path:</label><span class="requiredMark" ng-show="bookForm.src.$error.required">*</span> 
+		<input type="text" name="src" class="form-control" id="src" ng-model="book.src" placeholder="Image Path" ng-pattern="imagepath" required>
+	</div>
+	<div class="search">	    
+		<button type="submit" class="btn btn-primary" ng-disabled="bookForm.$invalid">Save</button>
+		<button type="button" class="btn btn-primary" ng-click="backToList()">Back</button>
+	</div>
+</form>
