@@ -8,7 +8,7 @@
  * Controller of the teamBlogApp
  */
 angular.module('teamBlogApp')
-  .controller('MainCtrl', function ($scope, $sce, Paginator, books) {     
+  .controller('MainCtrl', function ($scope, $sce, $location, Paginator, books) {     
   	var fetchFunction = function(offset, limit, callback){           
       $scope.pageCount = parseInt(books.length / 5) + (books.length % 5 > 0 ? 1 : 0);
       var count = offset + limit > books.length ? books.length : offset + limit;  			    
@@ -24,6 +24,10 @@ angular.module('teamBlogApp')
 
     $scope.setSortOrder = function(sortOrder){
       $scope.orderProp = sortOrder;
+    };
+
+    $scope.edit = function(id){
+      $location.path('/edit/' + id);
     };
 
     $scope.pageCount = 0;
